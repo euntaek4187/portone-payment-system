@@ -1,4 +1,5 @@
 {% load django_bootstrap5 %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +25,11 @@
             <li class="nav-item"><a href="#" class="nav-link">About</a></li>
           </ul>
         </header>
-      </div>
+    </div>
     <div class="container">
-        {% block contect %}{% endblock %}
+      {% block content %}
+        
+      {% endblock %}
     </div>
 </body>
 </html>
