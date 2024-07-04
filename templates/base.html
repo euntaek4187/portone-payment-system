@@ -64,6 +64,12 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
+                                    <a class="dropdown-item" href="{% url 'cart_detail' %}">장바구니</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'order_list' %}">주문목록</a>
+                                </li>
+                                <li>
                                     <a class="dropdown-item" href="{% url 'profile' %}">프로필</a>
                                 </li>
                                 <li>
@@ -84,5 +90,7 @@
 
             {% block content %}{% endblock %}
         </div>
+
+        {% block extra-script %}{% endblock %}
     </body>
 </html>

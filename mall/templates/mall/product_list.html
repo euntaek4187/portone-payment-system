@@ -39,7 +39,8 @@
                         <div class="d-flex justify-content-between">
                             <div>{{ product.price|intcomma }}원</div>
                             <div>
-
+                                <a href="{% url 'add_to_cart' product.pk %}"
+                                class="btn btn-primary cart-button">장바구니에 담기</a>
                             </div>
                         </div>
                     </div>
@@ -47,7 +48,5 @@
             </div>
         {% endfor %}
     </div>
-
     <div class="mt-3 mb-3">{% bootstrap_pagination page_obj url=request.get_full_path %}</div>
-
 {% endblock %}
