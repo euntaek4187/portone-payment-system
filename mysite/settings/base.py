@@ -2,7 +2,7 @@ from pathlib import Path
 
 import environ 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 env = environ.Env()
 
@@ -17,13 +17,8 @@ if env_path.exists():
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str(
     "SECRET_KEY",
-    default= "django-insecure-@iie-#@8*xg#gj=g3&1n8-@-6kykjxzwju*_wq_whbs#+tg1i("
+    default= ""
 )
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", default=True)
-
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 
 # Application definition
@@ -82,12 +77,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "mysite.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    "default": env.db("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -126,7 +116,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = env.str("STATIC_ROOT", default=BASE_DIR / "staticfiles")
 
 MEDIA_URL = "media/"
 MEDTA_ROOT = env.str("MEDTA_ROOT", default=BASE_DIR / "mediafiles")
