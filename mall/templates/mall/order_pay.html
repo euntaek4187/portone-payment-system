@@ -14,6 +14,8 @@
             const json_string = document.querySelector("#payment-props").textContent;
             const props = JSON.parse(json_string);
 
+            console.log(props);
+
             IMP.request_pay(props, function(response) {
                 location.href = next_url;
             });

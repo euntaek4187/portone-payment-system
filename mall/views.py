@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.views.generic import ListView
+from mall.decorators import deny_from_untrusted_hosts
 from mall.forms import CartProductForm
 from mall.models import Product, CartProduct, Order, OrderPayment
 
@@ -150,3 +151,23 @@ def order_detail(request, pk):
             "order": order,
         },
     )
+
+@require_POST
+@csrf_exempt
+@deny_from_untrusted_hosts(settings.PORTONE_WEBHOOK_IPS)
+def portone_webhook(request):
+    if request.META["CONTENT_TYPE"] == "application/json":
+        payload = json.loads(request.body)
+        merchant_uid = payload.get("merchant_uid")
+    else:
+        merchant_uid = request.POST.get("merchant_uid")
+
+    if not merchant_uid:
+        return HttpResponse("merchant_uid 인자가 누락되었습니다.", status=400)
+    elif merchant_uid == "merchant_1234567890":
+        return HttpResponse("test ok")
+
+    payment = get_object_or_404(OrderPayment, uid=merchant_uid)
+    payment.update()
+
+    return HttpResponse("ok")

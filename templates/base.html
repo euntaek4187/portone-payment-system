@@ -61,13 +61,13 @@
                             </a>
                             <ul class="dropdown-menu text-small" style="">
                                 <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
                                     <a class="dropdown-item" href="{% url 'cart_detail' %}">장바구니</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{% url 'order_list' %}">주문목록</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
                                 </li>
                                 <li>
                                     <a class="dropdown-item" href="{% url 'profile' %}">프로필</a>
@@ -89,8 +89,12 @@
             {% bootstrap_messages %}
 
             {% block content %}{% endblock %}
+
+            <hr />
+            &copy; 2023. All rights reserved.
         </div>
 
+        <script>window.csrf_token = "{{ csrf_token }}";</script>
         {% block extra-script %}{% endblock %}
     </body>
 </html>
