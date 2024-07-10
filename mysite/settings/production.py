@@ -12,7 +12,7 @@ DATABASES = {
     "default": env.db("DATABASE_URL", default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
 }
 
-STATIC_ROOT = env.str("STATIC_ROOT", default=BASE_DIR / "staticfiles")
+STATIC_ROOT = env.str("STATIC_ROOT", default=BASE_DIR / "static")
 
 LOG_FILE = '/home/ubuntu/portone-payment-system/log/django.log'
 LOGGING = {
